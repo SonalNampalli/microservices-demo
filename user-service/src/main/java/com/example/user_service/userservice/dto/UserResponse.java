@@ -1,9 +1,12 @@
 package com.example.user_service.userservice.dto;
 
+import com.example.user_service.userservice.entity.Role;
+
 public class UserResponse {
     private Long id;
     private String name;
     private String email;
+    private Role role;
 
     public UserResponse(Long id, String name, String email) {
         this.id = id;

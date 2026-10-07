@@ -15,7 +15,15 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
-    public User() {}
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
+    private Role role;
+
+    public User() {
+    }
+
     public User(String name, String email) {
         this.name = name;
         this.email = email;
