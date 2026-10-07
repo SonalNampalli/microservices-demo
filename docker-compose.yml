@@ -1,0 +1,52 @@
+services:
+  user-db:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: userdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+
+  order-db:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: orderdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5434:5432"
+
+  user-service:
+    build: ./user-service
+    ports:
+      - "8081:8081"
+    environment:
+      DB_URL: jdbc:postgresql://user-db:5432/userdb
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+    depends_on:
+      - user-db
+
+  order-service:
+    build: ./order-service
+    ports:
+      - "8082:8082"
+    environment:
+      DB_URL: jdbc:postgresql://order-db:5432/orderdb
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      USER_SERVICE_URL: http://user-service:8081
+    depends_on:
+      - user-db
+      - user-service
+
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - user-service
+      - order-service
+
+
