@@ -8,10 +8,11 @@ public class UserResponse {
     private String email;
     private Role role;
 
-    public UserResponse(Long id, String name, String email) {
+    public UserResponse(Long id, String name, String email, Role role) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.role = role;
     }
 
     public Long getId() {
@@ -24,5 +25,9 @@ public class UserResponse {
 
     public String getEmail() {
         return email;
+    }
+
+    public Role getRole() {
+        return role;
     }
 }

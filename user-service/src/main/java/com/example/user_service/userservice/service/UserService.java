@@ -35,6 +35,6 @@ public class UserService {
     }
 
     private UserResponse mapToResponse(User user) {
-        return new UserResponse(user.getId(), user.getName(), user.getEmail());
+        return new UserResponse(user.getId(), user.getName(), user.getEmail(), user.getRole());
     }
 }

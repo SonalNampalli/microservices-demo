@@ -1,5 +1,6 @@
-package com.example.user_service.userservice.dto;
+package com.example.user_service.userservice.auth.dto;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 public class RegisterRequest {
@@ -7,6 +8,7 @@ public class RegisterRequest {
     private String name;
 
     @NotBlank
+    @Email
     private String email;
 
     @NotBlank
